@@ -9,6 +9,7 @@ exports._setGridItemArea = (s) => (e) => (h) => {
         gridRowEnd: e.value1 + 1,
         gridColumnStart: s.value0 + 1,
         gridColumnEnd: e.value0 + 1,
+        display: "grid",
       }}
     >
       <H></H>
