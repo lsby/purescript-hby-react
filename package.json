@@ -8,9 +8,9 @@
   "scripts": {
     "test": "parcel test/index.html",
     "build": "npm run build:component && npm run build:purs",
-    "build:component": "babel src/Component/impt/*.js --config-file ./babel/component -o src/Component/Component.js",
+    "build:component": "babel src/Hby/React/impt/*.js --config-file ./babel/component -o src/Hby/React/Component.js",
     "build:purs": "spago build",
-    "watch:component": "onchange -i src/Component/impt/*.js -- npm run build:component",
+    "watch:component": "onchange -i src/Hby/React/impt/*.js -- npm run build:component",
     "watch:purs": "spago build -w"
   },
   "keywords": [],

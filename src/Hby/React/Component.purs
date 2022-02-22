@@ -1,4 +1,4 @@
-module Component.Component where
+module Hby.React.Component where
 
 import Prelude
 import Data.Argonaut (class EncodeJson)
