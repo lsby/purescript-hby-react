@@ -1,0 +1,32 @@
+{
+  "name": "purescript-hby-react",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "parcel test/index.html",
+    "build": "npm run build:component && npm run build:purs",
+    "build:component": "babel src/Component/impt/*.js --config-file ./babel/component -o src/Component/Component.js",
+    "build:purs": "spago build",
+    "watch:component": "onchange -i src/Component/impt/*.js -- npm run build:component",
+    "watch:purs": "spago build -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "core-js": "^3.21.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.3",
+    "@babel/core": "^7.17.4",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "onchange": "^7.1.0",
+    "parcel": "^2.3.2"
+  }
+}
