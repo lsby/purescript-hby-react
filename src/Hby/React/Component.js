@@ -184,14 +184,14 @@ exports._setGridItemArea = function (s) {
     return function (h) {
       var React = require("react");
 
-      console.log(s);
-
       var H = function H() {
         return h;
       };
 
+      console.log(11);
       return /*#__PURE__*/React.createElement("div", {
         style: {
+          display: "grid",
           gridRowStart: s.value1 + 1,
           gridRowEnd: e.value1 + 1,
           gridColumnStart: s.value0 + 1,

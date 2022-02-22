@@ -1,7 +1,7 @@
 module Test.Main where
 
 import Prelude
-import Component.Component (GridSize(..), HtmlSize(..), grid, mkGrid, setGridColSize, setGridHeight, setGridItemArea, setGridRowSize, testElement)
+import Hby.React.Component (GridSize(..), HtmlSize(..), grid, mkGrid, setGridColSize, setGridHeight, setGridItemArea, setGridRowSize, testElement)
 import Data.Tuple (Tuple(..))
 import Effect (Effect)
 import Hby.React.Dom (render)
