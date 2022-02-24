@@ -188,7 +188,6 @@ exports._setGridItemArea = function (s) {
         return h;
       };
 
-      console.log(11);
       return /*#__PURE__*/React.createElement("div", {
         style: {
           display: "grid",
