@@ -6,6 +6,7 @@ import Data.Argonaut (encodeJson, stringify) as A
 import Data.Tuple (Tuple)
 import Hby.MemoizeOne (memoizeOnce)
 import Hby.React.Data (HtmlElement)
+import Hby.Task (Task)
 
 --------------------------
 foreign import _testElement :: Unit -> HtmlElement
@@ -173,3 +174,53 @@ foreign import _setGridItemArea :: StartArea -> EndArea -> HtmlElement -> HtmlEl
 
 setGridItemArea :: StartArea -> EndArea -> HtmlElement -> HtmlElement
 setGridItemArea s e h = memoizeOnce $ _setGridItemArea s e h
+
+--------------------------
+foreign import _a :: String -> String -> HtmlElement
+
+a :: String -> String -> HtmlElement
+a = memoizeOnce $ _a
+
+--------------------------
+foreign import _button :: Task Unit -> String -> HtmlElement
+
+button :: Task Unit -> String -> HtmlElement
+button = memoizeOnce $ _button
+
+--------------------------
+foreign import _hr :: Unit -> HtmlElement
+
+hr :: HtmlElement
+hr = memoizeOnce $ _hr unit
+
+--------------------------
+foreign import _img :: String -> HtmlElement
+
+img :: String -> HtmlElement
+img = memoizeOnce $ _img
+
+--------------------------
+foreign import _ol :: Array String -> HtmlElement
+
+ol :: Array String -> HtmlElement
+ol = memoizeOnce $ _ol
+
+--------------------------
+foreign import _p :: String -> HtmlElement
+
+p :: String -> HtmlElement
+p = memoizeOnce $ _p
+
+--------------------------
+foreign import _sapn :: String -> HtmlElement
+
+sapn :: String -> HtmlElement
+sapn = memoizeOnce $ _sapn
+
+--------------------------
+foreign import _ul :: String -> HtmlElement
+
+ul :: String -> HtmlElement
+ul = memoizeOnce $ _ul
+
+--------------------------
