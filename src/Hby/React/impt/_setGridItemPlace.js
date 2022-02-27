@@ -4,7 +4,7 @@ exports._setGridItemPlace = (j1) => (j2) => (h) => {
   var json2 = JSON.parse(j2);
   var H = () => h;
   return (
-    <div style={{ justifySelf: json1, alignSelf: json2 }}>
+    <div style={{ display: "grid", justifySelf: json1, alignSelf: json2 }}>
       <H></H>
     </div>
   );
