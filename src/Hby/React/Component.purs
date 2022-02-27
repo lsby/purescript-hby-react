@@ -1,7 +1,7 @@
 module Hby.React.Component where
 
 import Prelude
-import Data.Argonaut (class EncodeJson)
+import Data.Argonaut (class EncodeJson, Json)
 import Data.Argonaut (encodeJson, stringify) as A
 import Data.Tuple (Tuple)
 import Hby.MemoizeOne (memoizeOnce)
@@ -25,7 +25,7 @@ data GridSize
   | S_Fill GridSize
 
 instance encodeJson_GridSize :: EncodeJson GridSize where
-  encodeJson a = case a of
+  encodeJson o = case o of
     S_Px value -> A.encodeJson { constructor: "px", value }
     S_Scale value -> A.encodeJson { constructor: "scale", value }
     S_Fr value -> A.encodeJson { constructor: "fr", value }
@@ -38,18 +38,18 @@ data GridGap
   = G_Px Number
 
 instance encodeJson_GridGap :: EncodeJson GridGap where
-  encodeJson a = case a of
+  encodeJson o = case o of
     G_Px value -> A.encodeJson { constructor: "px", v: value }
 
 toJsonString :: forall a. EncodeJson a => a -> String
-toJsonString a = A.stringify $ A.encodeJson a
+toJsonString o = A.stringify $ A.encodeJson o
 
 data GridDirection
   = D_RowPre
   | D_ColumnPre
 
 instance encodeJson_GridDirection :: EncodeJson GridDirection where
-  encodeJson a = case a of
+  encodeJson o = case o of
     D_RowPre -> A.encodeJson "row"
     D_ColumnPre -> A.encodeJson "column"
 
@@ -63,7 +63,7 @@ data GridPlaceItem
   | C_SpaceEvenly
 
 instance encodeJson_GridPlaceItem :: EncodeJson GridPlaceItem where
-  encodeJson a = case a of
+  encodeJson o = case o of
     C_Start -> A.encodeJson "start"
     C_End -> A.encodeJson "end"
     C_Center -> A.encodeJson "center"
@@ -85,7 +85,7 @@ type GridItemPlaceColItem
   = GridItemPlaceItem
 
 instance encodeJson_GridItemPlaceItem :: EncodeJson GridItemPlaceItem where
-  encodeJson a = case a of
+  encodeJson o = case o of
     I_Start -> A.encodeJson "start"
     I_End -> A.encodeJson "end"
     I_Center -> A.encodeJson "center"
@@ -96,7 +96,7 @@ data HtmlSize
   | H_Scale Number
 
 instance encodeJson_HtmlSize :: EncodeJson HtmlSize where
-  encodeJson a = case a of
+  encodeJson o = case o of
     H_Px value -> A.encodeJson { constructor: "px", value }
     H_Scale value -> A.encodeJson { constructor: "scale", value }
 
@@ -107,57 +107,57 @@ foreign import data GridBuilder :: Type
 foreign import _mkGrid :: GridBuilder -> HtmlElement
 
 mkGrid :: GridBuilder -> HtmlElement
-mkGrid = memoizeOnce _mkGrid
+mkGrid = memoizeOnce $ _mkGrid
 
 foreign import _grid :: Array HtmlElement -> GridBuilder
 
 grid :: Array HtmlElement -> GridBuilder
-grid = memoizeOnce _grid
+grid = memoizeOnce $ _grid
 
 foreign import _setGridWidth :: String -> GridBuilder -> GridBuilder
 
 setGridWidth :: HtmlSize -> GridBuilder -> GridBuilder
-setGridWidth a g = memoizeOnce $ _setGridWidth (toJsonString a) g
+setGridWidth arg g = memoizeOnce $ _setGridWidth (toJsonString arg) g
 
 foreign import _setGridHeight :: String -> GridBuilder -> GridBuilder
 
 setGridHeight :: HtmlSize -> GridBuilder -> GridBuilder
-setGridHeight a g = memoizeOnce $ _setGridHeight (toJsonString a) g
+setGridHeight arg g = memoizeOnce $ _setGridHeight (toJsonString arg) g
 
 foreign import _setGridRowSize :: String -> GridBuilder -> GridBuilder
 
 setGridRowSize :: Array GridSize -> GridBuilder -> GridBuilder
-setGridRowSize a g = memoizeOnce $ _setGridRowSize (toJsonString a) g
+setGridRowSize arg g = memoizeOnce $ _setGridRowSize (toJsonString arg) g
 
 foreign import _setGridColSize :: String -> GridBuilder -> GridBuilder
 
 setGridColSize :: Array GridSize -> GridBuilder -> GridBuilder
-setGridColSize a g = memoizeOnce $ _setGridColSize (toJsonString a) g
+setGridColSize arg g = memoizeOnce $ _setGridColSize (toJsonString arg) g
 
 foreign import _setGridRowGap :: String -> GridBuilder -> GridBuilder
 
 setGridRowGap :: GridGap -> GridBuilder -> GridBuilder
-setGridRowGap a g = memoizeOnce $ _setGridRowGap (toJsonString a) g
+setGridRowGap arg g = memoizeOnce $ _setGridRowGap (toJsonString arg) g
 
 foreign import _setGridColGap :: String -> GridBuilder -> GridBuilder
 
 setGridColGap :: GridGap -> GridBuilder -> GridBuilder
-setGridColGap a g = memoizeOnce $ _setGridColGap (toJsonString a) g
+setGridColGap arg g = memoizeOnce $ _setGridColGap (toJsonString arg) g
 
 foreign import _setGridDirection :: String -> GridBuilder -> GridBuilder
 
 setGridDirection :: GridDirection -> GridBuilder -> GridBuilder
-setGridDirection a g = memoizeOnce $ _setGridDirection (toJsonString a) g
+setGridDirection arg g = memoizeOnce $ _setGridDirection (toJsonString arg) g
 
 foreign import _setGridRowPlace :: String -> GridBuilder -> GridBuilder
 
 setGridRowPlace :: GridPlaceItem -> GridBuilder -> GridBuilder
-setGridRowPlace a g = memoizeOnce $ _setGridRowPlace (toJsonString a) g
+setGridRowPlace arg g = memoizeOnce $ _setGridRowPlace (toJsonString arg) g
 
 foreign import _setGridColPlace :: String -> GridBuilder -> GridBuilder
 
 setGridColPlace :: GridPlaceItem -> GridBuilder -> GridBuilder
-setGridColPlace a g = memoizeOnce $ _setGridColPlace (toJsonString a) g
+setGridColPlace arg g = memoizeOnce $ _setGridColPlace (toJsonString arg) g
 
 foreign import _setGridItemPlace :: String -> String -> HtmlElement -> HtmlElement
 
@@ -174,6 +174,17 @@ foreign import _setGridItemArea :: StartArea -> EndArea -> HtmlElement -> HtmlEl
 
 setGridItemArea :: StartArea -> EndArea -> HtmlElement -> HtmlElement
 setGridItemArea s e h = memoizeOnce $ _setGridItemArea s e h
+
+foreign import _setGridStyle :: Json -> GridBuilder -> GridBuilder
+
+setGridStyle :: Json -> GridBuilder -> GridBuilder
+setGridStyle = memoizeOnce $ _setGridStyle
+
+--------------------------
+foreign import _text :: String -> HtmlElement
+
+text :: String -> HtmlElement
+text = memoizeOnce $ _text
 
 --------------------------
 foreign import _a :: String -> String -> HtmlElement
@@ -224,3 +235,24 @@ ul :: String -> HtmlElement
 ul = memoizeOnce $ _ul
 
 --------------------------
+foreign import data HtmlEBuilder :: Type
+
+foreign import _htmlE :: String -> Array HtmlElement -> HtmlEBuilder
+
+htmlE :: String -> Array HtmlElement -> HtmlEBuilder
+htmlE = memoizeOnce $ _htmlE
+
+foreign import _mkHtmlE :: HtmlEBuilder -> HtmlElement
+
+mkHtmlE :: HtmlEBuilder -> HtmlElement
+mkHtmlE = memoizeOnce $ _mkHtmlE
+
+foreign import _setHtmlEStyle :: Json -> HtmlEBuilder -> HtmlEBuilder
+
+setHtmlEStyle :: Json -> HtmlEBuilder -> HtmlEBuilder
+setHtmlEStyle = memoizeOnce $ _setHtmlEStyle
+
+foreign import _setHtmlEAttr :: Json -> HtmlEBuilder -> HtmlEBuilder
+
+setHtmlEAttr :: Json -> HtmlEBuilder -> HtmlEBuilder
+setHtmlEAttr = memoizeOnce $ _setHtmlEAttr
