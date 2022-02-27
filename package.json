@@ -6,7 +6,7 @@
     "test": "test"
   },
   "scripts": {
-    "dev": "parcel test/index.html",
+    "dev": "rm -rf .parcel-cache dist && parcel test/index.html",
     "build": "npm run build:component && npm run build:purs",
     "build:component": "babel src/Hby/React/impt/*.js --config-file ./babel/component -o src/Hby/React/Component.js",
     "build:purs": "spago build",

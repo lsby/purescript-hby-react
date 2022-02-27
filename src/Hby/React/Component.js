@@ -15,23 +15,25 @@ exports._htmlE = function (tag) {
     return {
       tag: tag,
       attr: {},
-      child: hArr
+      child: hArr.length == 0 ? null : hArr
     };
   };
 };
 "use strict";
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 exports._mkGrid = function (b) {
   var React = require("react");
 
-  return /*#__PURE__*/React.createElement("div", {
+  return React.createElement("div", {
     style: b.style
   }, b.child.map(function (a, i) {
-    var A = function A() {
-      return a;
-    };
-
-    return /*#__PURE__*/React.createElement(A, {
+    return _objectSpread(_objectSpread({}, a), {}, {
       key: i
     });
   }));
@@ -47,7 +49,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 exports._mkHtmlE = function (builder) {
   var React = require("react");
 
-  return React.createElement(builder.tag, builder.attr, builder.child.map(function (a, i) {
+  return React.createElement(builder.tag, builder.attr, builder.child == null ? null : builder.child.map(function (a, i) {
     return _objectSpread(_objectSpread({}, a), {}, {
       key: i
     });
@@ -189,11 +191,7 @@ exports._setGridItemArea = function (s) {
     return function (h) {
       var React = require("react");
 
-      var H = function H() {
-        return h;
-      };
-
-      return /*#__PURE__*/React.createElement("div", {
+      return React.createElement("div", {
         style: {
           display: "grid",
           gridRowStart: s.value1 + 1,
@@ -201,7 +199,7 @@ exports._setGridItemArea = function (s) {
           gridColumnStart: s.value0 + 1,
           gridColumnEnd: e.value0 + 1
         }
-      }, /*#__PURE__*/React.createElement(H, null));
+      }, h);
     };
   };
 };
@@ -219,20 +217,13 @@ exports._setGridItemPlace = function (j1) {
       return function (h) {
         var React = require("react");
 
-        var json1 = JSON.parse(j1);
-        var json2 = JSON.parse(j2);
-
-        var H = function H() {
-          return h;
-        };
-
-        return /*#__PURE__*/React.createElement("div", {
+        return React.createElement("div", {
           style: _objectSpread({
             display: "grid",
-            justifySelf: json1,
-            alignSelf: json2
+            justifySelf: JSON.parse(j1),
+            alignSelf: JSON.parse(j2)
           }, style)
-        }, /*#__PURE__*/React.createElement(H, null));
+        }, h);
       };
     };
   };
@@ -318,21 +309,6 @@ exports._setGridRowSize = function (j) {
           return "auto-fill";
       }
     }
-  };
-};
-"use strict";
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-exports._setGridStyle = function (json) {
-  return function (builder) {
-    return _objectSpread(_objectSpread({}, builder), {}, {
-      style: _objectSpread(_objectSpread({}, builder.style), json)
-    });
   };
 };
 "use strict";
