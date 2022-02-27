@@ -13,11 +13,9 @@ to generate this file without the comments in this block.
 { name = "hby-react"
 , dependencies =
   [ "argonaut"
-  , "console"
   , "effect"
   , "hby-memoize-one"
   , "hby-task"
-  , "js-timers"
   , "prelude"
   , "tuples"
   ]
