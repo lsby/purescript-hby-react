@@ -1,27 +1,5 @@
 "use strict";
 
-exports._a = function (href) {
-  return function (str) {
-    var React = require("react");
-
-    return /*#__PURE__*/React.createElement("a", {
-      href: href
-    }, str);
-  };
-};
-"use strict";
-
-exports._button = function (cb) {
-  return function (str) {
-    var React = require("react");
-
-    return /*#__PURE__*/React.createElement("button", {
-      onClick: cb
-    }, str);
-  };
-};
-"use strict";
-
 exports._grid = function (hArr) {
   return {
     child: hArr,
@@ -29,13 +7,6 @@ exports._grid = function (hArr) {
       display: "grid"
     }
   };
-};
-"use strict";
-
-exports._hr = function () {
-  var React = require("react");
-
-  return /*#__PURE__*/React.createElement("hr", null);
 };
 "use strict";
 
@@ -47,15 +18,6 @@ exports._htmlE = function (tag) {
       child: hArr
     };
   };
-};
-"use strict";
-
-exports._img = function (src) {
-  var React = require("react");
-
-  return /*#__PURE__*/React.createElement("img", {
-    src: src
-  });
 };
 "use strict";
 
@@ -90,29 +52,6 @@ exports._mkHtmlE = function (builder) {
       key: i
     });
   }));
-};
-"use strict";
-
-exports._ol = function (itemArr) {
-  var React = require("react");
-
-  return /*#__PURE__*/React.createElement("ol", null, itemArr.map(function (a) {
-    return /*#__PURE__*/React.createElement("li", null, a);
-  }));
-};
-"use strict";
-
-exports._p = function (v) {
-  var React = require("react");
-
-  return /*#__PURE__*/React.createElement("p", null, v);
-};
-"use strict";
-
-exports._sapn = function (v) {
-  var React = require("react");
-
-  return /*#__PURE__*/React.createElement("sapn", null, v);
 };
 "use strict";
 
@@ -487,13 +426,4 @@ exports._text = function (str) {
   var React = require("react");
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, str);
-};
-"use strict";
-
-exports._ul = function (itemArr) {
-  var React = require("react");
-
-  return /*#__PURE__*/React.createElement("ul", null, itemArr.map(function (a) {
-    return /*#__PURE__*/React.createElement("li", null, a);
-  }));
 };

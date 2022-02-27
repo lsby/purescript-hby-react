@@ -187,54 +187,6 @@ text :: String -> HtmlElement
 text = memoizeOnce $ _text
 
 --------------------------
-foreign import _a :: String -> String -> HtmlElement
-
-a :: String -> String -> HtmlElement
-a = memoizeOnce $ _a
-
---------------------------
-foreign import _button :: Task Unit -> String -> HtmlElement
-
-button :: Task Unit -> String -> HtmlElement
-button = memoizeOnce $ _button
-
---------------------------
-foreign import _hr :: Unit -> HtmlElement
-
-hr :: HtmlElement
-hr = memoizeOnce $ _hr unit
-
---------------------------
-foreign import _img :: String -> HtmlElement
-
-img :: String -> HtmlElement
-img = memoizeOnce $ _img
-
---------------------------
-foreign import _ol :: Array String -> HtmlElement
-
-ol :: Array String -> HtmlElement
-ol = memoizeOnce $ _ol
-
---------------------------
-foreign import _p :: String -> HtmlElement
-
-p :: String -> HtmlElement
-p = memoizeOnce $ _p
-
---------------------------
-foreign import _sapn :: String -> HtmlElement
-
-sapn :: String -> HtmlElement
-sapn = memoizeOnce $ _sapn
-
---------------------------
-foreign import _ul :: String -> HtmlElement
-
-ul :: String -> HtmlElement
-ul = memoizeOnce $ _ul
-
---------------------------
 foreign import data HtmlEBuilder :: Type
 
 foreign import _htmlE :: String -> Array HtmlElement -> HtmlEBuilder
