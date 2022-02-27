@@ -159,10 +159,10 @@ foreign import _setGridColPlace :: String -> GridBuilder -> GridBuilder
 setGridColPlace :: GridPlaceItem -> GridBuilder -> GridBuilder
 setGridColPlace arg g = memoizeOnce $ _setGridColPlace (toJsonString arg) g
 
-foreign import _setGridItemPlace :: String -> String -> HtmlElement -> HtmlElement
+foreign import _setGridItemPlace :: String -> String -> Json -> HtmlElement -> HtmlElement
 
-setGridItemPlace :: GridItemPlaceRowItem -> GridItemPlaceColItem -> HtmlElement -> HtmlElement
-setGridItemPlace r c h = memoizeOnce $ _setGridItemPlace (toJsonString r) (toJsonString c) h
+setGridItemPlace :: GridItemPlaceRowItem -> GridItemPlaceColItem -> Json -> HtmlElement -> HtmlElement
+setGridItemPlace r c style h = memoizeOnce $ _setGridItemPlace (toJsonString r) (toJsonString c) style h
 
 type StartArea
   = Tuple Int Int

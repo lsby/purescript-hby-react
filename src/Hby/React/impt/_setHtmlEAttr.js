@@ -1,10 +1,4 @@
 exports._setHtmlEAttr = (json) => (builder) => {
-  return {
-    tag: builder.tag,
-    attr: {
-      ...builder.attr,
-      ...json,
-    },
-    child: builder.child,
-  };
+  var R = require("ramda");
+  return R.mergeDeepRight(builder, { attr: json });
 };

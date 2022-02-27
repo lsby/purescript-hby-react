@@ -268,25 +268,33 @@ exports._setGridItemArea = function (s) {
 };
 "use strict";
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 exports._setGridItemPlace = function (j1) {
   return function (j2) {
-    return function (h) {
-      var React = require("react");
+    return function (style) {
+      return function (h) {
+        var React = require("react");
 
-      var json1 = JSON.parse(j1);
-      var json2 = JSON.parse(j2);
+        var json1 = JSON.parse(j1);
+        var json2 = JSON.parse(j2);
 
-      var H = function H() {
-        return h;
+        var H = function H() {
+          return h;
+        };
+
+        return /*#__PURE__*/React.createElement("div", {
+          style: _objectSpread({
+            display: "grid",
+            justifySelf: json1,
+            alignSelf: json2
+          }, style)
+        }, /*#__PURE__*/React.createElement(H, null));
       };
-
-      return /*#__PURE__*/React.createElement("div", {
-        style: {
-          display: "grid",
-          justifySelf: json1,
-          alignSelf: json2
-        }
-      }, /*#__PURE__*/React.createElement(H, null));
     };
   };
 };
@@ -433,38 +441,26 @@ exports._setGridWidth = function (j) {
 };
 "use strict";
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 exports._setHtmlEAttr = function (json) {
   return function (builder) {
-    return {
-      tag: builder.tag,
-      attr: _objectSpread(_objectSpread({}, builder.attr), json),
-      child: builder.child
-    };
+    var R = require("ramda");
+
+    return R.mergeDeepRight(builder, {
+      attr: json
+    });
   };
 };
 "use strict";
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 exports._setHtmlEStyle = function (json) {
   return function (builder) {
-    return {
-      tag: builder.tag,
-      attr: _objectSpread(_objectSpread({}, builder.attr), {}, {
-        style: _objectSpread(_objectSpread({}, builder.style), json)
-      }),
-      child: builder.child
-    };
+    var R = require("ramda");
+
+    return R.mergeDeepRight(builder, {
+      attr: {
+        style: json
+      }
+    });
   };
 };
 "use strict";
