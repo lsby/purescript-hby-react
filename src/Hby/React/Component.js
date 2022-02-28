@@ -31,6 +31,7 @@ exports._mkGrid = function (b) {
   var React = require("react");
 
   return React.createElement("div", {
+    overflow: "auto",
     style: b.style
   }, b.child.map(function (a, i) {
     return _objectSpread(_objectSpread({}, a), {}, {
@@ -194,6 +195,7 @@ exports._setGridItemArea = function (s) {
       return React.createElement("div", {
         style: {
           display: "grid",
+          overflow: "auto",
           gridRowStart: s.value1 + 1,
           gridRowEnd: e.value1 + 1,
           gridColumnStart: s.value0 + 1,
@@ -220,6 +222,7 @@ exports._setGridItemPlace = function (j1) {
         return React.createElement("div", {
           style: _objectSpread({
             display: "grid",
+            overflow: "auto",
             justifySelf: JSON.parse(j1),
             alignSelf: JSON.parse(j2)
           }, style)
