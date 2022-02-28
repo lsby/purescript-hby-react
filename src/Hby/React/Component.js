@@ -31,8 +31,9 @@ exports._mkGrid = function (b) {
   var React = require("react");
 
   return React.createElement("div", {
-    overflow: "auto",
-    style: b.style
+    style: _objectSpread({
+      overflow: "auto"
+    }, b.style)
   }, b.child.map(function (a, i) {
     return _objectSpread(_objectSpread({}, a), {}, {
       key: i
