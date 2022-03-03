@@ -118,7 +118,7 @@ _gridItemAreaToStr g = case g of
   GridItemArea s0 s1 e0 e1 -> (t s1) <> " / " <> (t s0) <> " / " <> (t e1) <> " / " <> (t e0)
   where
   t :: Int -> String
-  t a = toString $ toNumber $ a - 1
+  t a = toString $ toNumber $ a + 1
 
 setGridItemArea :: GridItemArea -> HtmlEBuilder -> HtmlEBuilder
 setGridItemArea area = setStyle { display: "grid", overflow: "auto", gridArea: _gridItemAreaToStr area }
