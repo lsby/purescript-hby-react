@@ -2,9 +2,9 @@ module Test.Main where
 
 import Prelude
 import Effect (Effect)
-import Hby.React.Component (htmlE, mkHtmlE, setGrid, setStyle, testElement)
+import Hby.React.Component (htmlE, mkHtmlE, setStyle, testElement, text)
 import Hby.React.Dom (render)
-import Hby.React.Grid (GridSize(..), setGridSizeCol, setGridSizeRow)
+import Hby.React.Grid (GridItemPlaceItem(..), GridSize(..), setGrid, setGridItemPlaceCol, setGridItemPlaceRow, setGridSizeCol, setGridSizeRow)
 import Hby.Task (runTask_)
 
 main :: Effect Unit
@@ -21,7 +21,10 @@ main =
         , testElement
         , testElement
         , testElement
-        , testElement
+        , setGridItemPlaceCol GridItemPlace_Center
+            $ setGridItemPlaceRow GridItemPlace_Center
+            $ setGrid
+            $ htmlE "div" [ text "你好世界" ]
         , testElement
         , testElement
         , testElement

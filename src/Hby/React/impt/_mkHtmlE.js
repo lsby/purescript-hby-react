@@ -3,8 +3,8 @@ exports._mkHtmlE = (builder) => {
   return React.createElement(
     builder.tag,
     builder.attr,
-    builder.child == null
-      ? null
-      : builder.child.map((a, i) => ({ ...a, key: i }))
+    Array.isArray(builder.child)
+      ? builder.child.map((a, i) => ({ ...a, key: i }))
+      : builder.child
   );
 };

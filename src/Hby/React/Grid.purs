@@ -6,6 +6,11 @@ import Data.Number.Format (toString)
 import Data.String (joinWith)
 import Hby.React.Component (HtmlEBuilder, setStyle)
 
+--------------------------
+setGrid :: HtmlEBuilder -> HtmlEBuilder
+setGrid = setStyle { display: "grid", overflow: "auto" }
+
+--------------------------
 data GridSize
   = GridSize_Px Number
   | GridSize_Scale Number

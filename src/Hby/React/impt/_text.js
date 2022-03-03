@@ -1,4 +1,7 @@
 exports._text = (str) => {
-  var React = require("react");
-  return <>{str}</>;
+  return {
+    tag: "span",
+    attr: {},
+    child: str,
+  };
 };

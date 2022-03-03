@@ -1,8 +1,8 @@
 exports._testElement = () => {
-  var React = require("react");
-  return (
-    <div
-      style={{
+  return {
+    tag: "div",
+    attr: {
+      style: {
         height: "100%",
         width: "100%",
         border: 1,
@@ -11,9 +11,8 @@ exports._testElement = () => {
         justifyContent: "center",
         alignItems: "center",
         boxSizing: "border-box",
-      }}
-    >
-      测试元素
-    </div>
-  );
+      },
+    },
+    child: "测试元素",
+  };
 };

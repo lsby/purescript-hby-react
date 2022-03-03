@@ -5,24 +5,24 @@ import Hby.MemoizeOne (memoizeOnce)
 import Hby.React.Data (HtmlElement)
 
 --------------------------
-foreign import _testElement :: Unit -> HtmlElement
+foreign import _testElement :: Unit -> HtmlEBuilder
 
-testElement :: HtmlElement
+testElement :: HtmlEBuilder
 testElement = memoizeOnce $ _testElement unit
 
 --------------------------
-foreign import _text :: String -> HtmlElement
+foreign import _text :: String -> HtmlEBuilder
 
-text :: String -> HtmlElement
+text :: String -> HtmlEBuilder
 text = memoizeOnce $ _text
 
 --------------------------
 foreign import data HtmlEBuilder :: Type
 
 --------------------------
-foreign import _htmlE :: String -> Array HtmlElement -> HtmlEBuilder
+foreign import _htmlE :: String -> Array HtmlEBuilder -> HtmlEBuilder
 
-htmlE :: String -> Array HtmlElement -> HtmlEBuilder
+htmlE :: String -> Array HtmlEBuilder -> HtmlEBuilder
 htmlE = memoizeOnce $ _htmlE
 
 --------------------------
@@ -42,9 +42,5 @@ foreign import _mkHtmlE :: HtmlEBuilder -> HtmlElement
 
 mkHtmlE :: HtmlEBuilder -> HtmlElement
 mkHtmlE = memoizeOnce $ _mkHtmlE
-
---------------------------
-setGrid :: HtmlEBuilder -> HtmlEBuilder
-setGrid = setStyle { display: "grid", overflow: "auto" }
 
 --------------------------
