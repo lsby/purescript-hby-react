@@ -91,8 +91,10 @@ exports._testElement = function () {
 "use strict";
 
 exports._text = function (str) {
+  var React = require("react");
+
   return {
-    tag: "span",
+    tag: React.Fragment,
     attr: {},
     child: str
   };
