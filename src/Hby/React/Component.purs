@@ -5,6 +5,9 @@ import Hby.MemoizeOne (memoizeOnce)
 import Hby.React.Data (HtmlElement)
 
 --------------------------
+foreign import data HtmlEBuilder :: Type
+
+--------------------------
 foreign import _testElement :: Unit -> HtmlEBuilder
 
 testElement :: HtmlEBuilder
@@ -17,12 +20,15 @@ text :: String -> HtmlEBuilder
 text = memoizeOnce $ _text
 
 --------------------------
-foreign import data HtmlEBuilder :: Type
+foreign import _mkHtmlE :: HtmlEBuilder -> HtmlElement
+
+mkHtmlE :: HtmlEBuilder -> HtmlElement
+mkHtmlE = memoizeOnce $ _mkHtmlE
 
 --------------------------
-foreign import _htmlE :: String -> Array HtmlEBuilder -> HtmlEBuilder
+foreign import _htmlE :: String -> Array HtmlElement -> HtmlEBuilder
 
-htmlE :: String -> Array HtmlEBuilder -> HtmlEBuilder
+htmlE :: String -> Array HtmlElement -> HtmlEBuilder
 htmlE = memoizeOnce $ _htmlE
 
 --------------------------
@@ -38,9 +44,20 @@ setAttr :: forall a. Record a -> HtmlEBuilder -> HtmlEBuilder
 setAttr = memoizeOnce $ _setAttr
 
 --------------------------
-foreign import _mkHtmlE :: HtmlEBuilder -> HtmlElement
+htmlB :: String -> Array HtmlEBuilder -> HtmlEBuilder
+htmlB s arr = htmlE s $ map mkHtmlE arr
 
-mkHtmlE :: HtmlEBuilder -> HtmlElement
-mkHtmlE = memoizeOnce $ _mkHtmlE
+--------------------------
+data HtmlM
+  = Builder HtmlEBuilder
+  | Element HtmlElement
+
+htmlM :: String -> Array HtmlM -> HtmlEBuilder
+htmlM s arr = htmlE s $ map tr arr
+  where
+  tr :: HtmlM -> HtmlElement
+  tr m = case m of
+    Builder b -> mkHtmlE b
+    Element e -> e
 
 --------------------------

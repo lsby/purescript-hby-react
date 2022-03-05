@@ -2,7 +2,7 @@ module Test.Main where
 
 import Prelude
 import Effect (Effect)
-import Hby.React.Component (htmlE, mkHtmlE, setStyle, testElement, text)
+import Hby.React.Component (HtmlM(..), htmlB, htmlM, mkHtmlE, setStyle, testElement, text)
 import Hby.React.Dom (render)
 import Hby.React.Grid (GridItemPlaceItem(..), GridSize(..), setGrid, setGridItemPlaceCol, setGridItemPlaceRow, setGridSizeCol, setGridSizeRow)
 import Hby.Task (runTask_)
@@ -16,7 +16,7 @@ main =
       $ setGridSizeCol [ GridSize_Fr 1, GridSize_Fr 1, GridSize_Fr 1 ]
       $ setGridSizeRow [ GridSize_Fr 1, GridSize_Fr 1, GridSize_Fr 1 ]
       $ setGrid
-      $ htmlE "div"
+      $ htmlB "div"
       $ [ testElement
         , testElement
         , testElement
@@ -24,7 +24,7 @@ main =
         , setGridItemPlaceCol GridItemPlace_Center
             $ setGridItemPlaceRow GridItemPlace_Center
             $ setGrid
-            $ htmlE "div" [ text "你好世界" ]
+            $ htmlM "div" [ Builder (text "你好世界") ]
         , testElement
         , testElement
         , testElement
